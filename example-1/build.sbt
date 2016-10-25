@@ -9,7 +9,7 @@ lazy val root = (project in file("."))
     normalizedName in Bundle := "client",
     BundleKeys.system := "ExampleSystem",
     BundleKeys.endpoints := Map(
-      "client" -> Endpoint("tcp")
+      "client" -> Endpoint("tcp", 0, services = Set(URI("tcp:///client")))
     )
   )
 

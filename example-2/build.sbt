@@ -5,10 +5,11 @@ version := "1.0-SNAPSHOT"
 lazy val root = (project in file("."))
   .enablePlugins(PlayScala)
   .settings(
+    javaOptions in Bundle ++= Seq("-Dhttp.port=8081"),
     normalizedName in Bundle := "server",
     BundleKeys.system := "ExampleSystem",
     BundleKeys.endpoints := Map(
-      "akka-remote" -> Endpoint("tcp", 0, services = Set(URI("tcp:///akka-remote")))
+      "server" -> Endpoint("tcp", 0, services = Set(URI("tcp:///server")))
     )
   )
 

@@ -20,13 +20,12 @@ class CounterActor @Inject() (system: ActorSystem) extends Actor with ImplicitCo
 
   val logger: Logger = Logger(this.getClass())
 
-  //val remotePath = s"akka.tcp://application@localhost:2560/user/dumb-counter"
-
   val remotePath = {
-    val uri = Await.result(LocationService.lookup("akka-remote", URI("tcp://localhost:2560"), new LocationCache()), 5 seconds).get
+    val uri = Await.result(LocationService.lookup("server", URI("tcp://localhost:2560"), new LocationCache()), 5 seconds).get
     val host = uri.getHost
     val port = uri.getPort
-    s"akka.tcp://application@$host:$port/user/dumb-counter"
+    // Note: the name of actor system is `BUNDLE_SYSTEM`-`BUNDLE_VERSION`.
+    s"akka.tcp://ExampleSystem-1@$host:$port/user/dumb-counter"
   }  
 
   implicit val timeout: Timeout = Timeout.durationToTimeout( 3.seconds )
