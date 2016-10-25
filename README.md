@@ -18,3 +18,6 @@ With a successful run, something like the following should appear in console log
 
 `
 Received from remote actor: ActorIdentity(akka.tcp://application@localhost:2560/user/dumb-counter,Some(Actor[akka.tcp://application@localhost:2560/user/dumb-counter#322795395]))`
+
+
+with unsuccessful run, a `akka.pattern.AskTimeoutException` exception should appear in console log.
